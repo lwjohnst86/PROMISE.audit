@@ -1,9 +1,21 @@
 Package: PROMISE.audit
-Title: What the Package Does (one line, title case)
+Title: Identifies Unexpected Values in the PROMISE Datasets
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.3.1)
-License: What license is it under?
+Authors@R: person("Luke", "Johnston", email = "lwjohnst@gmail.com", role = c("aut", "cre"))
+Description: Checks given values of a dataset for "wrong" values (e.g. a DaysPerWeek 
+    column should only contain integers 1 to 7 since there are 7 days in a week). 
+    Adds these 'flaws' to the data so that a 'flaw' report can be created to look
+    into the violations in the raw data source.
+Depends: R (>= 3.4.2)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
+Imports: magrittr,
+    assertr,
+    purrr
