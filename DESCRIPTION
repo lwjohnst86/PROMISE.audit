@@ -19,3 +19,5 @@ Roxygen: list(markdown = TRUE)
 Imports: magrittr,
     assertr,
     purrr
+URL: https://github.com/lwjohnst86/PROMISE.audit
+BugReports: https://github.com/lwjohnst86/PROMISE.audit/issues
