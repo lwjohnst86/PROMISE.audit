@@ -31,3 +31,15 @@ test_that("Auditing values in range", {
     expect_equal(length(flaws[[id]]$error_df$value), 1)
     expect_match(flaws[[id]]$message, "Temp|Latitude|Longitude")
 })
+
+test_that("Auditing values in a set (specific integers)", {
+    audit <- chk_in_set(testdata, 0:7, "Days")
+    audit <- chk_in_set(audit, 0:24, "Hours")
+    flaws <- attributes(audit)$assertr_errors
+
+    id <- sample(2, 1)
+    expect_equal(length(flaws), 2)
+    expect_equal(flaws[[id]]$num.violations, 1)
+    expect_equal(length(flaws[[id]]$error_df$value), 1)
+    expect_match(flaws[[id]]$message, "Days|Hours")
+})
