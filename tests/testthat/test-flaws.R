@@ -43,3 +43,27 @@ test_that("Auditing values in a set (specific integers)", {
     expect_equal(length(flaws[[id]]$error_df$value), 1)
     expect_match(flaws[[id]]$message, "Days|Hours")
 })
+
+test_that("Auditing duplicate values in one or combined two columns", {
+    ds <- data.frame(id = c(rep(1:3, each = 2), 3),
+                     time = c(rep(1:2, times = 3), 1))
+    audit <- chk_duplicate(ds, c("id", "time"))
+    flaws_1 <- attributes(audit)$assertr_errors
+
+    audit <- chk_duplicate(audit, c("id"))
+    flaws_all <- attributes(audit)$assertr_errors
+
+    expect_equal(length(flaws_1), 1)
+    flaws_1 <- flaws_1[[1]]
+    expect_equal(flaws_1$num.violations, 2)
+    expect_equal(length(flaws_1$error_df$value), 2)
+    expect_match(flaws_1$message, "id--time")
+
+    expect_equal(length(flaws_all), 2)
+    expect_equal(length(flaws_all[[1]]$error_df$value), 2)
+    expect_equal(length(flaws_all[[2]]$error_df$value), 7)
+    expect_match(flaws_all[[1]]$message, "id--time")
+    expect_match(flaws_all[[2]]$message, "id")
+})
+
+
