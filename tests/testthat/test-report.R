@@ -16,9 +16,10 @@ test_that("Audit report generated", {
 
     audit <- chk_in_range(audit, 0, 24, "Hours")
     audit <- chk_in_set(audit, 0:7, "Days")
-    expect_message(aud_report(audit), "column (Hours|Days)")
-    expect_message(aud_report(audit), "violations: 1")
-    expect_message(aud_report(audit), "values: (25|8)")
-    expect_message(aud_report(audit, location = TRUE), "row numbers: *6")
+    report <- aud_report(audit)
+    expect_identical(report$Column, c("Hours", "Days"))
+    expect_equal(report$Fails, c(1, 1))
+    expect_equal(report$Values, c("25", "8"))
+    expect_equal(report$RowNum, c("6", "6"))
 })
 

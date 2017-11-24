@@ -4,10 +4,8 @@
 #' or more audits (`chk_*`) have been done.
 #'
 #' @param .data Dataset after being 'audited'.
-#' @param location Logical. Whether to show the specific location (row number)
-#'   of the data value flaw/error.
 #'
-#' @return Returns the data invisibly, but prints messages detailing the
+#' @return Returns a data frame of all failed audits.
 #' @export
 #'
 #' @examples
@@ -18,17 +16,16 @@
 #' chk_in_range(-1.1, 1.1, "a") %>%
 #' chk_in_set(1:9, "b")
 #' aud_report(flaws)
-#' aud_report(flaws, location = TRUE)
 #'
-aud_report <- function(.data, location = FALSE) {
+aud_report <- function(.data) {
 
     flaws <- attr(.data, "assertr_errors")
     if (is.null(flaws)) {
         message("Auditing found no flaws based on the specified checks.")
-        return(.data)
+        return()
     }
 
-    flaw_report <- function(x, location = location) {
+    flaw_report <- function(x) {
         uniq_flaw_values <- unique(x$error_df$value)
         uniq_flaw_values <-
             ifelse(is.numeric(uniq_flaw_values),
@@ -37,26 +34,14 @@ aud_report <- function(.data, location = FALSE) {
         num_flaws <- x$num.violations
         flaw_locations <- x$error_df$index
         column_name <- sub("^.*\\'(.*)\\'.*\\'.*\\'.*$", "\\1", x$message)
-
-        flaw_rownum <- "\n"
-        if (location) {
-            flaw_rownum <-
-                paste(
-                "\n- Violation row numbers: ",
-                paste(flaw_locations, collapse = ", "),
-                "\n"
-                )
-        }
-
-        message(
-            "\n",
-            "Auditing for column ", column_name, ":\n",
-            "- Total violations: ", num_flaws, "\n",
-            "- Violation values: ", paste(uniq_flaw_values, collapse = ", "),
-            flaw_rownum
-            )
+        data.frame(
+            Column = column_name,
+            Fails = num_flaws,
+            Values = as.character(paste(uniq_flaw_values, collapse = ", ")),
+            RowNum = as.character(paste(flaw_locations, collapse = ", ")),
+            stringsAsFactors = FALSE
+        )
     }
 
-    purrr::map(flaws, flaw_report, location = location)
-    return(invisible(.data))
+    purrr::map_dfr(flaws, flaw_report)
 }
