@@ -42,8 +42,7 @@ chk_in_range <- function(.data, .low, .high, .variables) {
 #'
 #' flaws <- ds %>%
 #' chk_in_set(1:2, "a")
-#' flaws
-#' attributes(flaws)$assertr_errors
+#' aud_report(flaws)
 chk_in_set <- function(.data, .values, .variables) {
     chk_assert_func(
         .data = .data,
@@ -52,3 +51,26 @@ chk_in_set <- function(.data, .values, .variables) {
     )
 }
 
+#' Audits for potential erroneous values ("outliers").
+#'
+#' Uses the [assertr::within_n_mads()].
+#'
+#' @inherit chk_in_range return params
+#' @param .n_mads Number of mean absolute deviations (see [assertr::within_n_mads]).
+#'
+#' @export
+#'
+#' @examples
+#' library(magrittr)
+#' ds <- data.frame(a = c(rnorm(100), 10))
+#'
+#' flaws <- ds %>%
+#' chk_within_mads(2, "a")
+#' aud_report(flaws)
+chk_within_mads <- function(.data, .n_mads, .variables) {
+    chk_insist_func(
+        .data = .data,
+        .function = assertr::within_n_sds(.n_mads),
+        .variables = .variables
+    )
+}
