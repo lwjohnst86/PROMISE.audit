@@ -66,4 +66,12 @@ test_that("Auditing duplicate values in one or combined two columns", {
     expect_match(flaws_all[[2]]$message, "id")
 })
 
+test_that("Auditing possible 'outliers' (within_mads)", {
+    audit <- chk_within_mads(testdata, 2, "Temp")
+    flaws <- aud_report(audit)
 
+    expect_equal(nrow(flaws), 1)
+    expect_identical(flaws$Values, "2000")
+    expect_identical(flaws$RowNum, "6")
+    expect_match(flaws$Column, "Temp")
+})
