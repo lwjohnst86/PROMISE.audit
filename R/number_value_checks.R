@@ -1,6 +1,6 @@
 #' Audits column values within a certain numeric range.
 #'
-#' Uses the [`assertr::within_bounds`] function.
+#' Uses the [assertr::within_bounds()] function.
 #'
 #' @param .data Data to audit.
 #' @param .low Low value in the range.
@@ -8,6 +8,7 @@
 #' @param .variables Column variables to check.
 #'
 #' @return Adds attribute that contains the audit errors, if any, to the data.
+#'   Use [aud_report()] to view the audit fails.
 #' @export
 #'
 #' @examples
@@ -16,8 +17,7 @@
 #'
 #' flaws <- ds %>%
 #' chk_in_range(-1, 1, "a")
-#' flaws
-#' attributes(flaws)$assertr_errors
+#' aud_report(flaws)
 #'
 chk_in_range <- function(.data, .low, .high, .variables) {
     chk_assert_func(
@@ -29,7 +29,7 @@ chk_in_range <- function(.data, .low, .high, .variables) {
 
 #' Audits column values of specific integers.
 #'
-#' Uses the [`assertr::in_set`] function.
+#' Uses the [assertr::in_set()] function.
 #'
 #' @inherit chk_in_range return params
 #' @param .values The integer values.
