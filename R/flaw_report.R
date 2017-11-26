@@ -22,7 +22,7 @@ aud_report <- function(.data) {
     flaws <- attr(.data, "assertr_errors")
     if (is.null(flaws)) {
         message("Auditing found no flaws based on the specified checks.")
-        return()
+        return(invisible())
     }
 
     flaw_report <- function(x) {
