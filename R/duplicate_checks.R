@@ -1,6 +1,6 @@
 #' Audits values in columns for duplicate values.
 #'
-#' Among other things, uses [`assertr::is_uniq`].
+#' Among other things, uses [assertr::is_uniq].
 #'
 #' @inherit chk_in_range return params
 #'
@@ -17,10 +17,11 @@
 #' ds
 #'
 #' flaws <- chk_duplicate(ds, c("id", "time"))
-#' attributes(flaws)$assertr_errors # Should be one
+#' aud_report(flaws) # Should be one
 #'
 #' flaws <- chk_duplicate(ds, c("id"))
-#' attributes(flaws)$assertr_errors # Should be all of them.
+#' aud_report(flaws) # Should be all of them
+#'
 chk_duplicate <- function(.data, .variables) {
     stopifnot(all(.variables %in% names(.data)))
 
