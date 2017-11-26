@@ -26,6 +26,7 @@
 NULL
 
 #' @rdname assert_base
+#' @export
 chk_assert_func <- function(.data, .function, .variables) {
     assertr::assert_(
         data = .data,
@@ -37,6 +38,7 @@ chk_assert_func <- function(.data, .function, .variables) {
 }
 
 #' @rdname assert_base
+#' @export
 chk_insist_func <- function(.data, .function, .variables) {
     assertr::insist_(
         data = .data,
