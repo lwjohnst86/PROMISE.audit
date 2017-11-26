@@ -74,3 +74,27 @@ chk_within_mads <- function(.data, .n_mads, .variables) {
         .variables = .variables
     )
 }
+
+#' Audit for any missingness in columns.
+#'
+#' Uses [assertr::not_na()].
+#'
+#' @inherit chk_in_range params return
+#'
+#' @export
+#'
+#' @examples
+#'
+#' library(magrittr)
+#' ds <- data.frame(a = c(1:4, NA, 6:10))
+#' flaws <- ds %>%
+#' chk_missingness("a")
+#' aud_report(flaws)
+#'
+chk_missingness <- function(.data, .variables) {
+    chk_assert_func(
+        .data = .data,
+        .function = assertr::not_na,
+        .variables = .variables
+    )
+}
