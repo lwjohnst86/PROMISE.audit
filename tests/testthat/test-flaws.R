@@ -75,3 +75,15 @@ test_that("Auditing possible 'outliers' (within_mads)", {
     expect_identical(flaws$RowNum, "6")
     expect_match(flaws$Column, "Temp")
 })
+
+
+test_that("Auditing for missing values.", {
+    ds <- data.frame(a = c(1:4, NA, 6:10))
+    audit <- chk_missingness(ds, "a")
+    flaws <- aud_report(audit)
+
+    expect_equal(nrow(flaws), 1)
+    expect_identical(flaws$Values, "NA")
+    expect_identical(flaws$RowNum, "5")
+    expect_match(flaws$Column, "a")
+})
