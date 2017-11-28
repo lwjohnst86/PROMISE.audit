@@ -3,6 +3,7 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^\.travis\.yml$
+^\.gitlab-ci\.yml$
 ^codecov\.yml$
 ^docs$
 ^_pkgdown\.yml$
