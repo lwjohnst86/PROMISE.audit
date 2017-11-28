@@ -20,11 +20,12 @@ knitr::opts_chunk$set(
 The aim of this package is to run audits on datasets to check for errors or
 typos in values. For instance, with a column called MonthsPerYear, the values 
 should be integers that go from 1 to 12. If there are violations to this pattern,
-the values need to be investigated at the raw data source.
+the values need to be investigated at the raw data source. This is a companion package
+to the main PROMISE package (see [website](https://promise-cohort.gitlab.io/PROMISE)).
 
-For the most part, this audit package is a thin wrapper around 
+In general, this audit package is a thin wrapper around 
 [assertr](https://cran.r-project.org/web/packages/assertr/vignettes/assertr.html).
-For the most part, it simplifies some common uses of assertr as well as creating
+It simplifies some common uses of assertr as well as creating
 an easy interface to viewing the errors from multiple audit checks.
 
 # Installation
@@ -34,5 +35,18 @@ Only on GitHub right now, and is in development.
 ```{r, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("lwjohnst86/PROMISE.audit")
+```
+
+# Usage
+
+```{r}
+library(PROMISE.audit)
+library(magrittr)
+audit <- swiss %>% 
+    chk_in_range(3, 20, "Examination") %>% 
+    chk_in_set(1:10, "Education") %>% 
+    chk_outliers(3, "Fertility")
+aud_report(audit) %>% 
+    knitr::kable()
 ```
 
