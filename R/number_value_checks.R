@@ -65,9 +65,9 @@ chk_in_set <- function(.data, .values, .variables) {
 #' ds <- data.frame(a = c(rnorm(100), 10))
 #'
 #' flaws <- ds %>%
-#' chk_within_mads(2, "a")
+#' chk_outliers(2, "a")
 #' aud_report(flaws)
-chk_within_mads <- function(.data, .n_mads, .variables) {
+chk_outliers <- function(.data, .n_mads, .variables) {
     chk_insist_func(
         .data = .data,
         .function = assertr::within_n_sds(.n_mads),

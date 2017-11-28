@@ -67,7 +67,7 @@ test_that("Auditing duplicate values in one or combined two columns", {
 })
 
 test_that("Auditing possible 'outliers' (within_mads)", {
-    audit <- chk_within_mads(testdata, 2, "Temp")
+    audit <- chk_outliers(testdata, 2, "Temp")
     flaws <- aud_report(audit)
 
     expect_equal(nrow(flaws), 1)
