@@ -26,11 +26,7 @@ aud_report <- function(.data) {
     }
 
     flaw_report <- function(x) {
-        uniq_flaw_values <- unique(x$error_df$value)
-        uniq_flaw_values <-
-            ifelse(is.numeric(uniq_flaw_values),
-                   uniq_flaw_values,
-                   as.character(uniq_flaw_values))
+        uniq_flaw_values <- paste(unique(x$error_df$value))
         num_flaws <- x$num.violations
         flaw_locations <- x$error_df$index
         column_name <- sub("^.*\\'(.*)\\'.*\\'.*\\'.*$", "\\1", x$message)
