@@ -26,8 +26,8 @@ chk_duplicate <- function(.data, .variables) {
     stopifnot(all(.variables %in% names(.data)))
 
     if (length(.variables) > 1) {
-        column <- paste0(.variables, collapse = "--")
-        .data[column] <- apply(.data[, .variables], 1, paste0, collapse = "-")
+        column <- paste0(.variables, collapse = ".and.")
+        .data[column] <- apply(.data[, .variables], 1, paste0, collapse = " and ")
     } else {
         column <- .variables
     }

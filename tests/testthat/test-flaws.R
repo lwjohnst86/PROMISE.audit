@@ -57,12 +57,12 @@ test_that("Auditing duplicate values in one or combined two columns", {
     flaws_1 <- flaws_1[[1]]
     expect_equal(flaws_1$num.violations, 2)
     expect_equal(length(flaws_1$error_df$value), 2)
-    expect_match(flaws_1$message, "id--time")
+    expect_match(flaws_1$message, "id.and.time")
 
     expect_equal(length(flaws_all), 2)
     expect_equal(length(flaws_all[[1]]$error_df$value), 2)
     expect_equal(length(flaws_all[[2]]$error_df$value), 7)
-    expect_match(flaws_all[[1]]$message, "id--time")
+    expect_match(flaws_all[[1]]$message, "id.and.time")
     expect_match(flaws_all[[2]]$message, "id")
 })
 
