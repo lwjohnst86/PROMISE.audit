@@ -1,6 +1,6 @@
 Package: PROMISE.audit
 Title: Identifies Unexpected Values in the PROMISE Datasets
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: person("Luke", "Johnston", email = "lwjohnst@gmail.com", role = c("aut", "cre"))
 Description: Checks given values of a dataset for "wrong" values (e.g. a DaysPerWeek 
     column should only contain integers 1 to 7 since there are 7 days in a week). 

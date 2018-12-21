@@ -1,3 +1,7 @@
+# PROMISE.audit 0.0.2
+
+* Use `assert` instead of `assert_`, as it is deprecated.
+
 # PROMISE.audit 0.0.1
 
 * Added website.
