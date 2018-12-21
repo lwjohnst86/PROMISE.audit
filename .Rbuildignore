@@ -1,3 +1,4 @@
+^_vignettes$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
