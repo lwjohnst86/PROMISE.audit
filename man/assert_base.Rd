@@ -21,7 +21,7 @@ chk_insist_func(.data, .function, .variables)
 Adds \code{assertr_errors} to data.frame.
 }
 \description{
-Thin wrapper around the \code{\link[assertr:assert_]{assertr::assert_()}} and \code{\link[assertr:insist_]{assertr::insist_()}} functions.
+Thin wrapper around the \code{\link[assertr:assert]{assertr::assert()}} and \code{\link[assertr:insist]{assertr::insist()}} functions.
 }
 \examples{
 library(magrittr)
