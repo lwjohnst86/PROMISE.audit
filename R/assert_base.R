@@ -1,7 +1,7 @@
 
 #' General data audit function to create other specific audit functions.
 #'
-#' Thin wrapper around the [assertr::assert_()] and [assertr::insist_()] functions.
+#' Thin wrapper around the [assertr::assert()] and [assertr::insist()] functions.
 #'
 #' @name assert_base
 #' @param .data Data to check for errors.
@@ -28,10 +28,10 @@ NULL
 #' @rdname assert_base
 #' @export
 chk_assert_func <- function(.data, .function, .variables) {
-    assertr::assert_(
+    assertr::assert(
         data = .data,
         predicate = .function,
-        .dots = .variables,
+        .variables,
         success_fun = assertr::success_continue,
         error_fun = assertr::error_append
     )
@@ -40,10 +40,10 @@ chk_assert_func <- function(.data, .function, .variables) {
 #' @rdname assert_base
 #' @export
 chk_insist_func <- function(.data, .function, .variables) {
-    assertr::insist_(
+    assertr::insist(
         data = .data,
         predicate_generator = .function,
-        .dots = .variables,
+        .variables,
         success_fun = assertr::success_continue,
         error_fun = assertr::error_append
     )
