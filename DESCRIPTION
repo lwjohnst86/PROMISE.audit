@@ -6,7 +6,6 @@ Description: Checks given values of a dataset for "wrong" values (e.g. a DaysPer
     column should only contain integers 1 to 7 since there are 7 days in a week). 
     Adds these 'flaws' to the data so that a 'flaw' report can be created to look
     into the violations in the raw data source.
-Depends: R (>= 3.4.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -15,7 +14,7 @@ Suggests: testthat,
     rmarkdown,
     covr
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Imports: magrittr,
     assertr,
