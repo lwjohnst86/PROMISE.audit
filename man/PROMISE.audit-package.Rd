@@ -6,6 +6,8 @@
 \alias{PROMISE.audit-package}
 \title{PROMISE.audit: Identifies Unexpected Values in the PROMISE Datasets}
 \description{
+\if{html}{\figure{logo.png}{options: align='right'}}
+
 Checks given values of a dataset for "wrong" values (e.g. a DaysPerWeek 
     column should only contain integers 1 to 7 since there are 7 days in a week). 
     Adds these 'flaws' to the data so that a 'flaw' report can be created to look
